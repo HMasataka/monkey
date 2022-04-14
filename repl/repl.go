@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 
+	"github.com/HMasataka/monkey/evaluator"
 	"github.com/HMasataka/monkey/lexer"
 	"github.com/HMasataka/monkey/parser"
 )
@@ -30,8 +31,11 @@ func Start(in io.Reader, out io.Writer) {
 			printParserErrors(out, p.Errors())
 		}
 
-		io.WriteString(out, program.String())
-		io.WriteString(out, "\n")
+		evaluted := evaluator.Eval(program)
+		if evaluted != nil {
+			io.WriteString(out, evaluted.Inspect())
+			io.WriteString(out, "\n")
+		}
 	}
 }
 
