@@ -138,7 +138,7 @@ type HashKey struct {
 	Value uint64
 }
 
-func (b *Boolean) HasKey() HashKey {
+func (b *Boolean) HashKey() HashKey {
 	var value uint64
 
 	if b.Value {
